@@ -1,0 +1,14 @@
+{
+  "name": "tv-upea-cms",
+  "version": "1.0.0",
+  "description": "TV UPEA CMS - Full Stack Application",
+  "private": true,
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
