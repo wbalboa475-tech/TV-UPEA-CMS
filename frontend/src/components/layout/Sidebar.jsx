@@ -17,7 +17,7 @@ import { cn } from '../../utils/cn';
 const menuItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
   { icon: Tv, label: 'Programas', path: '/programs' },
-  { icon: Library, label: 'Biblioteca', path: '/library' },
+   { icon: Library, label: 'Biblioteca', path: '/library' },
   { icon: FolderOpen, label: 'Mis Archivos', path: '/files' },
   { icon: Upload, label: 'Subir Archivo', path: '/upload' },
   { icon: Search, label: 'Búsqueda', path: '/search' },
