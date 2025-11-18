@@ -24,10 +24,13 @@ const connectDB = async () => {
     await sequelize.authenticate();
     console.log('✅ PostgreSQL conectado correctamente');
     
-    // FORZAR RECREACIÓN
-    console.log('🔄 Recreando tablas...');
-    await sequelize.sync({ alter: false });
-    console.log('✅ Tablas recreadas exitosamente');
+    // En producción, usar alter: true para adaptar el esquema
+    // En desarrollo, usar alter: false para recrear
+    const shouldAlter = process.env.NODE_ENV === 'production';
+    
+    console.log('🔄 Sincronizando tablas...');
+    await sequelize.sync({ alter: shouldAlter, force: false });
+    console.log('✅ Tablas sincronizadas exitosamente');
   } catch (error) {
     console.error('❌ Error al conectar PostgreSQL:', error);
     process.exit(1);
