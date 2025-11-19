@@ -69,16 +69,17 @@ app.use(errorHandler);
 const startServer = async () => {
   try {
     await connectDB();
-    
-    app.listen(config.port, () => {
-      logger.info(`🚀 Servidor corriendo en puerto ${config.port}`);
-      logger.info(`📍 Entorno: ${config.env}`);
-      logger.info(`🌐 URL: ${config.apiUrl}`);
-    });
-  } catch (error) {
-    logger.error(`❌ Error al iniciar servidor: ${error.message}`);
-    process.exit(1);
+  } catch (dbError) {
+    logger.warn(`⚠️ Advertencia: No se pudo conectar a la BD: ${dbError.message}`);
+    logger.warn('El servidor continuará ejecutándose en modo degradado');
   }
+  
+  // Iniciar servidor de todas formas
+  app.listen(config.port, '0.0.0.0', () => {
+    logger.info(`🚀 Servidor corriendo en puerto ${config.port}`);
+    logger.info(`📍 Entorno: ${config.env}`);
+    logger.info(`🌐 URL: ${config.apiUrl}`);
+  });
 };
 
 startServer();
